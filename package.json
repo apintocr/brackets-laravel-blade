@@ -3,7 +3,7 @@
 	"title": "Laravel Blade",
 	"description": "Syntax highlighting for Laravel Blade template language on Brackets Editor",
 	"homepage": "https://github.com/apintocr/brackets-laravel-blade",
-	"version": "0.8.0",
+	"version": "0.1.0",
 	"author": "António Pinto <apinto@numeroserabiscos.com> (http://numeroserabiscos.com/)",
 	"repository": {
 		"type": "git",

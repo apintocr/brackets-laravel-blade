@@ -60,7 +60,7 @@ define(function (require, exports, module) {
 	
 	
 
-  CodeMirror.defineMode("blade", function(config, parserConfig) {
+  CodeMirror.defineMode("laravelblade", function(config, parserConfig) {
     var bladeOverlay = {
       token: function(stream, state) {
         var ch;
@@ -94,10 +94,10 @@ define(function (require, exports, module) {
   });
 	
 
-  LanguageManager.defineLanguage("blade", {
-      "name": "blade",
-      "mode": "blade",
+  LanguageManager.defineLanguage("laravelblade", {
+      "name": "Laravel Blade",
+      "mode": "laravelblade",
       "fileExtensions": ["blade.php"],
-      "blockComment": ["<!--", "-->"]
+      "blockComment": ["{{--", "--}}"]
   });
 });
