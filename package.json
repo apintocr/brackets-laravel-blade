@@ -1,0 +1,19 @@
+{
+	"name": "apintocr.brackets-laravel-blade",
+	"title": "Laravel Blade",
+	"description": "Syntax highlighting for Laravel Blade template language on Brackets Editor",
+	"homepage": "https://github.com/apintocr/brackets-laravel-blade",
+	"version": "0.8.0",
+	"author": "António Pinto <apinto@numeroserabiscos.com> (http://numeroserabiscos.com/)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/apintocr/brackets-laravel-blade"
+	},
+	"license": {
+		"type": "MIT",
+		"url": "http://mit-license.org/"
+	},
+	"engines": {
+		"brackets": ">=0.44.0"
+	}
+}
