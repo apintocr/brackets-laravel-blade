@@ -1,47 +1,52 @@
 define(function (require, exports, module) {
-  'use strict';
+	'use strict';
 
-  var LanguageManager = brackets.getModule("language/LanguageManager");
-	
+	var LanguageManager = brackets.getModule("language/LanguageManager");
 
-  CodeMirror.defineMode("laravelblade", function(config, parserConfig) {
-    var bladeOverlay = {
-      token: function(stream, state) {
-        var ch;
-        if (stream.match("@if")) {
-          while ((ch = stream.next()) != null)
-            if (ch == "}" && stream.next() == "}") break;
-          stream.eat("}");
-          return "def";
-        }        
-		  
-		
-		  if (stream.match("{{")) {
-          while ((ch = stream.next()) != null)
-            if (ch == "}" && stream.next() == "}") break;
-          stream.eat("}");
-          return "def";
-        }
-		  
-		  
-        while (
-			stream.next() != null && !stream.match("@if", false) && 
-			!stream.match("{{", false)) {}
-        return null;
-  
-	  
-	  }
-		
-		
-    };
-    return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || "text/html"), bladeOverlay);
-  });
-	
 
-  LanguageManager.defineLanguage("laravelblade", {
-      "name": "Laravel Blade",
-      "mode": "laravelblade",
-      "fileExtensions": ["blade.php"],
-      "blockComment": ["{{--", "--}}"]
-  });
+	CodeMirror.defineMode("laravelblade", function (config, parserConfig) {
+		var mustacheOverlay = {
+			token: function (stream, state) {
+
+				var ch;
+
+				//Highlight Comments {{-- --}}
+				if (stream.match('{{--')) {
+					while ((ch = stream.next()) != null)
+						if (ch == "--}" && stream.next() == "}") break;
+					stream.eat("}");
+					return "comment";
+				}
+
+				//Highlight {{ $var }})
+				if (stream.match("{{")) {
+					while ((ch = stream.next()) != null)
+						if (ch == "}" && stream.next() == "}") break;
+					stream.eat("}");
+					return "def";
+				}
+				//Highlight {% $var %} (Laravel 5)
+				else if (stream.match('{%')) {
+					while ((ch = stream.next()) != null)
+						if (ch == "%" && stream.next() == "}") break;
+					stream.eat("}");
+					return "def";
+				}
+
+				//Return Null if no condition was met.
+				else if (stream.next() != null) {
+					return null;
+				}
+			}
+		};
+		return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || "php"), mustacheOverlay);
+	});
+
+
+	LanguageManager.defineLanguage("laravelblade", {
+		"name": "Laravel Blade",
+		"mode": "laravelblade",
+		"fileExtensions": ["blade.php"],
+		"blockComment": ["{{--", "--}}"]
+	});
 });
