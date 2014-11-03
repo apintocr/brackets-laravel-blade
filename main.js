@@ -11,9 +11,9 @@ define(function (require, exports, module) {
 				var ch;
 
 				//Highlight Comments {{-- --}}
-				if (stream.match('{{--')) {
+				if (stream.match("{{--")) {
 					while ((ch = stream.next()) != null)
-						if (ch == "--}" && stream.next() == "}") break;
+						if (ch == "}" && stream.next() == "}") break;
 					stream.eat("}");
 					return "comment";
 				}
