@@ -14,11 +14,19 @@
 				<!--[if IE]>
 								<script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
 								<script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-				<![endif]-->
+
+
+
+<?php
+
+echo 'çpç';
+
+?>
+<![endif]-->
 </head>
- @if((sdsdsd)
+ @if(sdsdsd) test test string
 <body>
-				<nav class="navbar navbar-inverse {{working}} navbar-fixed-top" role="navigation">
+				<nav class="navbar navbar-inverse {{{working}}} navbar-fixed-top" role="navigation">
 								<div class="container">
 												<div class="navbar-header">
 																<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
