@@ -1,3 +1,7 @@
+<img src="http://img.shields.io/badge/version-0.2.1-green.svg?style=flat-square">
+[<img src="http://img.shields.io/badge/Laravel-Blade Template-red.svg?style=flat-square">](http://laravel.com/)
+[<img src="http://img.shields.io/badge/Brackets-code editor-blue.svg?style=flat-square">](http://brackets.io/)
+
 Laravel Blade
 =============
 Syntax highlighting for [*Brackets code editor*](http://brackets.io/).
