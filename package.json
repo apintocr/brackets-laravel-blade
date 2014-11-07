@@ -1,7 +1,7 @@
 {
 	"name": "apintocr.brackets-laravel-blade",
 	"title": "Laravel Blade",
-	"description": "Syntax highlighting for Laravel Blade templates. Update 0.3.0: Code Hint Support",
+	"description": "Syntax highlighting and Code Hints for Laravel Blade. Update 0.3.0: Code Hint Support",
 	"homepage": "https://github.com/apintocr/brackets-laravel-blade",
 	"version": "0.3.0",
 	"author": "António Pinto <apinto@numeroserabiscos.com> (http://numeroserabiscos.com/)",
