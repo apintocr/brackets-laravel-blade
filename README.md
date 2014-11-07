@@ -4,9 +4,11 @@
 
 Laravel Blade
 =============
-Syntax highlighting for [*Brackets code editor*](http://brackets.io/).
+Syntax highlighting and Code Hints for [*Brackets code editor*](http://brackets.io/).
 
 ##Supports:
+*** NOW Supporting Blade Code Hints! ***
+Syntax Highlight for:
 
 * Comments: **{{-- --}}**
 * Laravel 4: **{{  }}**
