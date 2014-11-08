@@ -1,4 +1,4 @@
-[<img src="http://img.shields.io/badge/version-0.2.1-green.svg?style=flat-square">](#)
+[<img src="http://img.shields.io/badge/version-0.3.0-green.svg?style=flat-square">](#)
 [<img src="http://img.shields.io/badge/Code-Highlight-yellow.svg?style=flat-square">](#)
 [<img src="http://img.shields.io/badge/Code-Hints-orange.svg?style=flat-square">](http://laravel.com/)
 [<img src="http://img.shields.io/badge/Laravel-Blade-red.svg?style=flat-square">](http://laravel.com/)
