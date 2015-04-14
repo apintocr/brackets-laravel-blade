@@ -30,6 +30,16 @@ define(function (require, exports, module) {
 						}
 				}
 				
+				//Laravel5 Form Syntax
+				if (stream.match("{!!")) {
+					while ((ch = stream.next()) != null)
+						if (ch == "!" && stream.next() == "}") {
+							stream.eat("}");
+							return "def";
+						}
+				}
+				
+				
 				//Laravel Echo Syntax
 				if (stream.match("{{")) {
 					while ((ch = stream.next()) != null)
@@ -44,6 +54,7 @@ define(function (require, exports, module) {
 				while (stream.next() != null && 
 					   !stream.match("{--", false) && 
 					   !stream.match("{%", false) && 
+					   !stream.match("{!!", false) && 
 					   !stream.match("{{", false)
 					  ) {}
 				return null;
