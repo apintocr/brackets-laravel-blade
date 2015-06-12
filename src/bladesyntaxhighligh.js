@@ -9,16 +9,34 @@ define(function (require, exports, module) {
 	CodeMirror.defineMode("laravelblade", function (config, parserConfig) {
 		
 		var laravelOverlay = {
-			
+			startState: function() {
+				return {
+					inComment: false
+				}  
+			},
 			token: function(stream, state) {
 				var ch;
 				
-				//Laravel Comment Syntax (Single Line only)
-				if (stream.match("{{--")) {
-					while ((ch = stream.next()) != null)
-						if (ch == "}" && stream.next() == "}") break;
-					stream.eat("}");
+				// Laravel Comment Syntax (Single Line and Multiline)
+				if (state.inComment) {
+					if (!stream.skipTo("--}}")) {
+						stream.skipToEnd();
+					} else {
+						stream.match("--}}");
+						state.inComment = false;
+					}
 					return "comment";
+				} else {
+					if (stream.match("{{--")) {
+						state.inComment = true;
+						if (!stream.skipTo(("--}}"))) {
+							stream.skipToEnd();
+						} else {
+							stream.match("--}}");
+							state.inComment = false;
+						}
+						return "comment";
+					}
 				}
 				
 				//Laravel5 Echo Syntax
