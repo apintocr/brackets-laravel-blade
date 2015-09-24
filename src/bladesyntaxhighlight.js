@@ -3,7 +3,7 @@ define(function (require, exports, module) {
 
 	var LanguageManager = brackets.getModule("language/LanguageManager");
 	var CodeMirror 		= brackets.getModule("thirdparty/CodeMirror2/lib/codemirror");
-    var highlightClass  = "keyword";
+    	var highlightClass  = "keyword";
 
 	CodeMirror.defineMode("laravelblade", function (config, parserConfig) {
 		
@@ -11,9 +11,9 @@ define(function (require, exports, module) {
 			startState: function() {
 				return {
 					inComment: false,
-                    inEcho: false,
-                    inEcho5: false,
-                    inForm: false
+                    			inEcho: false,
+                    			inEcho5: false,
+                			inForm: false
 				}  
 			},
 			token: function(stream, state) {
@@ -63,7 +63,7 @@ define(function (require, exports, module) {
 					}
 				}
 				
-                //Laravel Echo Syntax (Single Line and Multiline)
+                		//Laravel Echo Syntax (Single Line and Multiline)
 				if (state.inEcho) {
 					if (!stream.skipTo("}}")) {
 						stream.skipToEnd();
@@ -107,7 +107,7 @@ define(function (require, exports, module) {
 					}
 				}
 				
-                //listen for opening tags
+                		//listen for opening tags
 				while (stream.next() != null && 
 					   !stream.match("{{--", false) && 
 					   !stream.match("{%", false) && 
