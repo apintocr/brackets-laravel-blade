@@ -51,7 +51,7 @@ define(function (require, exports, module) {
 				//Laravel5 Form Syntax
 				if (stream.match("{!!")) {
 					while ((ch = stream.next()) != null)
-						if (ch == "!" && stream.next() == "}") {
+						if (ch == "!" && stream.next() == "!" && stream.next() == "}") {
 							stream.eat("}");
 							return "def";
 						}
