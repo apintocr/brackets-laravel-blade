@@ -15,6 +15,7 @@ Syntax Highlight for:
 * Comments: **{{-- --}}**
 * Laravel 4: **{{  }}**
 * Laravel 5: **{%  %}**
+* Laravel 5: **{!! !!}**
 
 ###**Current State**
 Currently this extension supports only basic syntax, I plan to add support for the full Laravel Blade template system.
