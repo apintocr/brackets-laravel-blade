@@ -109,7 +109,7 @@ define(function (require, exports, module) {
 				
                 //listen for opening tags
 				while (stream.next() != null && 
-					   !stream.match("{--", false) && 
+					   !stream.match("{{--", false) && 
 					   !stream.match("{%", false) && 
 					   !stream.match("{!!", false) && 
 					   !stream.match("{{", false)
