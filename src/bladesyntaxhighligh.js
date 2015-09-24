@@ -1,19 +1,18 @@
+
 define(function (require, exports, module) {
 	'use strict';	
 
 	var LanguageManager = brackets.getModule("language/LanguageManager");
 	var CodeMirror 		= brackets.getModule("thirdparty/CodeMirror2/lib/codemirror");
-    var highlightClass  = "keyword";
+    var className       = "keyword";
+
 
 	CodeMirror.defineMode("laravelblade", function (config, parserConfig) {
 		
 		var laravelOverlay = {
 			startState: function() {
 				return {
-					inComment: false,
-                    inEcho: false,
-                    inEcho5: false,
-                    inForm: false
+					inComment: false
 				}  
 			},
 			token: function(stream, state) {
@@ -31,7 +30,7 @@ define(function (require, exports, module) {
 				} else {
 					if (stream.match("{{--")) {
 						state.inComment = true;
-						if (!stream.skipTo("--}}")) {
+						if (!stream.skipTo(("--}}"))) {
 							stream.skipToEnd();
 						} else {
 							stream.match("--}}");
@@ -41,74 +40,38 @@ define(function (require, exports, module) {
 					}
 				}
 				
-				//Laravel5 Echo Syntax (Single Line and Multiline)
-				if (state.inEcho5) {
-					if (!stream.skipTo("%}")) {
-						stream.skipToEnd();
-					} else {
-						stream.match("%}");
-						state.inEcho5 = false;
-					}
-					return highlightClass;
-				} else {
-					if (stream.match("{%")) {
-						state.inEcho5 = true;
-						if (!stream.skipTo("%}")) {
-							stream.skipToEnd();
-						} else {
-							stream.match("%}");
-							state.inEcho5 = false;
+				//Laravel5 Echo Syntax
+				if (stream.match("{%")) {
+					while ((ch = stream.next()) != null)
+						if (ch == "%" && stream.next() == "}") {
+							stream.eat("}");
+							return className;
 						}
-						return highlightClass;
-					}
-				}
-				
-                //Laravel Echo Syntax (Single Line and Multiline)
-				if (state.inEcho) {
-					if (!stream.skipTo("}}")) {
-						stream.skipToEnd();
-					} else {
-						stream.match("}}");
-						state.inEcho = false;
-					}
-					return highlightClass;
-				} else {
-					if (stream.match("{{")) {
-						state.inEcho = true;
-						if (!stream.skipTo("}}")) {
-							stream.skipToEnd();
-						} else {
-							stream.match("}}");
-							state.inEcho = false;
-						}
-						return highlightClass;
-					}
 				}
 				
 				//Laravel5 Form Syntax
-				if (state.inForm) {
-					if (!stream.skipTo("!!}")) {
-						stream.skipToEnd();
-					} else {
-						stream.match("!!}");
-						state.inForm = false;
-					}
-					return highlightClass;
-				} else {
-					if (stream.match("{!!")) {
-						state.inForm = true;
-						if (!stream.skipTo("!!}")) {
-							stream.skipToEnd();
-						} else {
-							stream.match("!!}");
-							state.inForm = false;
+				if (stream.match("{!!")) {
+					while ((ch = stream.next()) != null)
+						if (ch == "!" && stream.next() == "!" && stream.next() == "}") {
+							stream.eat("}");
+							return className;
 						}
-						return highlightClass;
-					}
 				}
 				
+				
+				//Laravel Echo Syntax
+				if (stream.match("{{")) {
+					while ((ch = stream.next()) != null)
+						if (ch == "}" && stream.next() == "}") {
+							stream.eat("}");
+							return className;
+						}
+				}
+				
+				
+				
 				while (stream.next() != null && 
-					   !stream.match("{--", false) && 
+					   !stream.match("{{--", false) && 
 					   !stream.match("{%", false) && 
 					   !stream.match("{!!", false) && 
 					   !stream.match("{{", false)
