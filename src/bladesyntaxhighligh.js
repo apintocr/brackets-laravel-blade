@@ -40,7 +40,7 @@ define(function (require, exports, module) {
 					}
 				}
 				
-				//Laravel5 Echo Syntax
+				//Laravel5 Echo Syntax (Single Line and Multiline)
 				if (stream.match("{%")) {
 					while ((ch = stream.next()) != null)
 						if (ch == "%" && stream.next() == "}") {
@@ -49,7 +49,7 @@ define(function (require, exports, module) {
 						}
 				}
 				
-				//Laravel5 Form Syntax
+				//Laravel5 Form Syntax (Single Line and Multiline)
 				if (stream.match("{!!")) {
 					while ((ch = stream.next()) != null)
 						if (ch == "!" && stream.next() == "!" && stream.next() == "}") {
@@ -59,17 +59,16 @@ define(function (require, exports, module) {
 				}
 				
 				
-				//Laravel Echo Syntax
+				//Laravel Echo Syntax (Single Line and Multiline)
 				if (stream.match("{{")) {
 					while ((ch = stream.next()) != null)
 						if (ch == "}" && stream.next() == "}") {
 							stream.eat("}");
 							return className;
 						}
-				}
+                }
 				
-				
-				
+				//listen for opening tags
 				while (stream.next() != null && 
 					   !stream.match("{{--", false) && 
 					   !stream.match("{%", false) && 
