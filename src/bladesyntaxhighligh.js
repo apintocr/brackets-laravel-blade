@@ -85,7 +85,7 @@ define(function (require, exports, module) {
 					}
 				}
 				
-				//Laravel5 Form Syntax
+				//Laravel5 Form Syntax (Single Line and Multiline)
 				if (state.inForm) {
 					if (!stream.skipTo("!!}")) {
 						stream.skipToEnd();
@@ -107,6 +107,7 @@ define(function (require, exports, module) {
 					}
 				}
 				
+                //listen for opening tags
 				while (stream.next() != null && 
 					   !stream.match("{--", false) && 
 					   !stream.match("{%", false) && 
