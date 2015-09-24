@@ -115,7 +115,6 @@ define(function (require, exports, module) {
 					   !stream.match("{{", false)
 					  ) {}
 				return null;
-					   
 			}
 		  };
 		  return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || "php"), laravelOverlay);
