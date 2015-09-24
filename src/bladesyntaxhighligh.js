@@ -4,6 +4,7 @@ define(function (require, exports, module) {
 
 	var LanguageManager = brackets.getModule("language/LanguageManager");
 	var CodeMirror 		= brackets.getModule("thirdparty/CodeMirror2/lib/codemirror");
+    var className       = "keyword";
 
 
 	CodeMirror.defineMode("laravelblade", function (config, parserConfig) {
@@ -44,7 +45,7 @@ define(function (require, exports, module) {
 					while ((ch = stream.next()) != null)
 						if (ch == "%" && stream.next() == "}") {
 							stream.eat("}");
-							return "def";
+							return className;
 						}
 				}
 				
@@ -53,7 +54,7 @@ define(function (require, exports, module) {
 					while ((ch = stream.next()) != null)
 						if (ch == "!" && stream.next() == "!" && stream.next() == "}") {
 							stream.eat("}");
-							return "def";
+							return className;
 						}
 				}
 				
@@ -63,7 +64,7 @@ define(function (require, exports, module) {
 					while ((ch = stream.next()) != null)
 						if (ch == "}" && stream.next() == "}") {
 							stream.eat("}");
-							return "def";
+							return className;
 						}
 				}
 				
