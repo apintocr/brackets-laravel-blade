@@ -121,7 +121,6 @@ define(function (require, exports, module) {
 		  return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || "php"), laravelOverlay);
 	});
 
-
 	LanguageManager.defineLanguage("laravelblade", {
 		"name": "Laravel Blade",
 		"mode": "laravelblade",
