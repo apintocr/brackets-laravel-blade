@@ -3,11 +3,11 @@ define(function (require, exports, module) {
 	'use strict';	
 	
 	//Require
-	var BladeSyntaxHighligh  = require('src/bladesyntaxhighligh');
+	var BladeSyntaxHighlight  = require('src/bladesyntaxhighlight');
 	var BladeCodeHint		 = require('src/bladecodehint');
 	
 	//Call
-	BladeSyntaxHighligh;
+	BladeSyntaxHighlight;
 	BladeCodeHint;
 
 });
